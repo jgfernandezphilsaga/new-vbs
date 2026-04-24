@@ -1,0 +1,96 @@
+<?php
+
+use Illuminate\Support\Facades\Route;
+use Illuminate\Http\Request;
+
+// use App\Http\Controllers\LoginController;
+use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\RequestController;
+use App\Http\Controllers\ReportsController;
+use App\Http\Controllers\UserController;
+/*
+|--------------------------------------------------------------------------
+| Web Routes
+|--------------------------------------------------------------------------
+|
+| Here is where you can register web routes for your application. These
+| routes are loaded by the RouteServiceProvider and all of them will
+| be assigned to the "web" middleware group. Make something great!
+|
+*/
+
+// Route::get('/', function () {
+//     // return view('phpinfo');
+
+//     // return view('admin/forms/create');
+//     return view('admin/dashboard/dashboard');
+// });
+
+// Route::get('login', function () {phpinfo();})->name('login');
+
+Route::post('authenticate', [LoginController::class, 'authenticate'])->name('login.authenticate');
+
+Route::get('/test/{request_header_id}', [RequestController::class, 'post_to_api']);
+Route::get('/review/{header_id}/{details_id}', [RequestController::class, 'show_request_details']);
+Route::post('/assign_drivers', [RequestController::class, 'get_passengers_list'])->name('selected_drivers');
+
+// Route::get('/user/{fullname}', [RequestController::class, 'getUserDetails']);
+// Route::get('/test', [RequestController::class, 'postWithCurl']);
+
+Route::middleware(['auth', 'auth.session'])->group(function () {
+
+    Route::get('logout', [LoginController::class, 'logout'])->name('logout');
+
+    Route::middleware('role')->group(function () {
+        Route::group(['prefix' => 'reports'], function() {
+            Route::get('index', [ReportsController::class, 'index'])->name('reports.index');
+            Route::get('/show/{id}', [ReportsController::class, 'show'])->name('reports.request');
+            Route::get('/print/request/{id}', [ReportsController::class, 'print'])->name('reports.print.request');
+            Route::get('/show_dispatch/{id}', [RequestController::class, 'show_dispatch']);
+        });
+    });
+
+    Route::get('/', [RequestController::class, 'index'])->name('dashboard');
+    Route::get('/dashboard_tbl', [RequestController::class, 'get_dashboard']);
+    Route::get('/filter', [RequestController::class, 'index'])->name('filter');
+    Route::get('/api/get_employees', [RequestController::class, 'get_employees']);
+    Route::get('/api/request_vehicles', [RequestController::class, 'request_vehicles']);
+    Route::get('/api/get_drivers', [RequestController::class, 'get_drivers']);
+    Route::get('/api/get_vehicles', [RequestController::class, 'get_vehicles']);
+    Route::get('/requests/filter', [RequestController::class, 'filterRequests']);
+    Route::get('/get_details', [RequestController::class, 'get_dispatch_details']);
+    Route::get('/request_today', [RequestController::class, 'getTodayRequests']);
+    
+    
+
+
+
+    Route::group(['prefix' => 'request'], function () {
+        Route::get('/', [RequestController::class, 'create'])->name('create.request');
+        // /Route::get('/process/{id}', [RequestController::class, 'process'])->name('process.request');
+        Route::get('/process/{id}', [RequestController::class, 'assign_vehicle'])->name('process.request');
+        Route::post('/store', [RequestController::class, 'store'])->name('store.request');
+        Route::get('/show/{id}', [RequestController::class, 'show'])->name('show.request')->withoutMiddleware('role');
+        Route::get('/show_dispatch/{id}', [RequestController::class, 'show_dispatch'])->withoutMiddleware('role');
+        Route::get('/edit/{id}', [RequestController::class, 'edit'])->name('edit.request')->withoutMiddleware('role');
+        Route::post('/update/{id}', [RequestController::class, 'update'])->name('update.request');
+        Route::post('/update-status', [RequestController::class, 'update_status'])->name('request.update-status');
+        Route::post('/save_process', [RequestController::class, 'save_process'])->name('save.request');
+        Route::get('/dispatch_create', [RequestController::class, 'dispatch_create'])->name('dispatch.create');
+       Route::post('/save_dispatch', [RequestController::class, 'save_dispatch_details'])->name('dispatch.save_dispatch');
+    });
+
+
+    Route::group(['prefix' => 'user'], function() {
+        Route::get('create', [UserController::class, 'create'])->name('user.create')->middleware('role');
+        Route::post('store', [UserController::class, 'store'])->name('user.store')->middleware('role');
+        // Route::get('/show/{id}', [ReportsController::class, 'show'])->name('reports.request');
+        // Route::get('/print/request/{id}', [ReportsController::class, 'print'])->name('reports.print.request');
+
+        Route::get('fullname/{id}', [UserController::class, 'fullname']);
+    });
+});
+
+Route::get('login', [LoginController::class, 'login'])->name('login');
+
+

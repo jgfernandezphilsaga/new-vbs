@@ -1,0 +1,9 @@
+.mega-menu-container {
+    -webkit-transition: top .4s ease;
+    transition: top .4s ease;
+}
+
+.nav-link {
+    text-decoration: none;
+    cursor: pointer;
+}

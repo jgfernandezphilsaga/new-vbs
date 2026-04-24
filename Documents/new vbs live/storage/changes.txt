@@ -1,0 +1,19 @@
+
+-- ADDED FILES TO laragon/bin/php/php-8.1.10-Win32-vs16-x64/ext
+   
+    extension=php_pdo_sqlsrv_81_nts_x64.dll
+    extension=php_pdo_sqlsrv_81_ts_x64.dll
+    extension=php_sqlsrv_81_nts_x64.dll
+    extension=php_sqlsrv_81_ts_x64.dll
+
+
+-- LOCAL PHP8.1 php.ini --
+
+removed 
+    ';' from extension=ldap
+
+added
+    extension=php_pdo_sqlsrv_81_nts_x64.dll
+    extension=php_pdo_sqlsrv_81_ts_x64.dll
+    extension=php_sqlsrv_81_nts_x64.dll
+    extension=php_sqlsrv_81_ts_x64.dll

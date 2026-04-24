@@ -1,0 +1,57 @@
+.status-saved {
+    background-color: #64B5F6;
+}
+
+.status-posted {
+    background-color: #4DB6AC;
+    
+}
+
+.status-approved {
+    background-color: #81C784;   
+}
+
+.status-completed {    
+      background-color: #81C784; 
+}
+
+.status-hold {
+    background-color: #FFB74D;
+}
+
+.status-disapproved {    
+    background-color: #EF5350;
+}
+
+.status-in-progress {    
+    background-color: #00bfff;
+}
+
+.status-partially-approved {    
+    background-color: gray;
+}
+
+.status-fully-approved {    
+    background-color: #42b883;
+}
+
+.status-approved-open {    
+    background-color: #e46161;
+}
+
+.status-approved-closed {    
+    background-color: #c24d2c; 
+}
+
+
+.status-disapproved {    
+    background-color: #233142;
+}
+
+.status-pending {    
+    background-color: #ff6f3c;
+}
+
+.status-draft {    
+    background-color: #33b9ff;
+}

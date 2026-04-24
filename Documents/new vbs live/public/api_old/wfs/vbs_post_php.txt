@@ -1,0 +1,102 @@
+<?php
+
+include("config.php");
+
+// CORS headers
+header("Access-Control-Allow-Origin: *");
+header("Access-Control-Expose-Headers: Content-Length, X-JSON");
+header("Access-Control-Allow-Methods: POST");
+header("Access-Control-Allow-Headers: *");
+
+// Log POST data for debugging
+file_put_contents("log.txt", json_encode($_POST, JSON_PRETTY_PRINT));
+
+// Ensure the request is POST
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+
+    $data = [
+        'token'          => $_POST['token'] ?? null,
+        'type'           => $_POST['type'] ?? null,
+        'refno'          => $_POST['refno'] ?? null,
+        'sourceapp'      => $_POST['sourceapp'] ?? null,
+        'sourceurl'      => $_POST['sourceurl'] ?? null,
+        'requestor'      => $_POST['requestor'] ?? null,
+        'department'     => $_POST['department'] ?? 'IT Department',
+        'transid'        => $_POST['transid'] ?? null,
+        'email'          => $_POST['email'] ?? null,
+        'purpose'        => $_POST['purpose'] ?? null,
+        'name'           => $_POST['name'] ?? null,
+        'approval_url'   => $_POST['approval_url'] ?? null,
+        'is_resubmitted' => $_POST['is_resubmitted'] ?? 0
+    ];
+
+    // Validate required fields
+    if (!$data['token'] || !$data['transid']) {
+        echo json_encode(['status' => 'error', 'message' => 'Missing token or transid']);
+        exit;
+    }
+
+    // Check if token is allowed
+    $sql = "SELECT * FROM allowed_transactions WHERE token = ?";
+    $stmt = sqlsrv_query($vbs_conn, $sql, [$data['token']]);
+
+    if ($stmt === false) {
+        echo json_encode(['status' => 'error', 'message' => sqlsrv_errors()]);
+        exit;
+    }
+
+    $data_result = sqlsrv_fetch_array($stmt, SQLSRV_FETCH_ASSOC);
+
+    if ($data_result && $data_result['token'] === $data['token']) {
+        // Check if transaction exists
+        $existStmt = sqlsrv_query($vbs_conn, "SELECT * FROM transactions WHERE transid = ?", [$data['transid']]);
+        $existData = sqlsrv_fetch_array($existStmt, SQLSRV_FETCH_ASSOC);
+
+        if ($existData) {
+            // Update existing transaction
+            $new_status = ($data['is_resubmitted'] == 1) ? 'RESUBMITTED' : 'PENDING';
+
+            sqlsrv_query($vbs_conn, "UPDATE transactions SET status = ? WHERE transid = ?", [$new_status, $data['transid']]);
+            //sqlsrv_query($vbs_conn, "UPDATE approval_status SET status = 'PENDING' WHERE transaction_id = ?", [$existData['id']]);
+
+            echo json_encode(['status' => 'success', 'message' => 'Transaction UPDATED', 'exists' => true]);
+        } else {
+            // Insert new transaction
+            $insert = "INSERT INTO transactions (
+                ref_req_no, source_app, source_url, details, requestor,
+                totalamount, converted_amount, department, transid, email,
+                status, created_at, currency, purpose, name, approval_url
+            ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 'PENDING', GETDATE(), 'PHP', ?, ?, ?)";
+
+            $params = [
+                $data['refno'],
+                $data['sourceapp'],
+                $data['sourceurl'],
+                $data['type'],
+                $data['requestor'],
+                0,
+                0,
+                $data['department'],
+                $data['transid'],
+                $data['email'],
+                $data['purpose'],
+                $data['name'],
+                $data['approval_url']
+            ];
+
+            $insert_stmt = sqlsrv_query($vbs_conn, $insert, $params);
+
+            if ($insert_stmt === false) {
+                echo json_encode(['status' => 'error', 'message' => sqlsrv_errors()]);
+                exit;
+            }
+
+            echo json_encode(['status' => 'success', 'message' => 'Transaction INSERTED', 'exists' => false]);
+        }
+    } else {
+        echo json_encode(['status' => 'error', 'message' => 'Invalid token or transaction type']);
+    }
+
+} else {
+    echo json_encode(['status' => 'error', 'message' => 'Invalid request method']);
+}

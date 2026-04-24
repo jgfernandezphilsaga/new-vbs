@@ -1,0 +1,37 @@
+services:
+  # MSSQL Service
+  mssql:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    container_name: vbs-docker-mssql-test
+    restart: unless-stopped
+    ports:
+      - "1434:1433"
+    environment:
+      SA_PASSWORD: "YourStrong@Passw0rd"  # Set a strong password
+      ACCEPT_EULA: "Y"
+    networks:
+      - private-network
+
+  # Laravel App Service
+  site: 
+    build: .
+    container_name: vbs-docker-test
+    image: vbs-site
+    restart: unless-stopped
+    ports:
+      - "8084:80"
+      - "446:443"
+    volumes:
+      - ./:/var/www/html
+    depends_on:
+      - mssql
+    networks:
+      - private-network
+      - external-network
+
+# Networks
+networks:
+  private-network:
+    driver: bridge
+  external-network:
+    external: true

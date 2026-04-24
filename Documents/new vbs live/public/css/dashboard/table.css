@@ -1,0 +1,31 @@
+.status-saved {
+    background-color: #EF5350;
+    margin:0px;
+}
+
+.status-posted {
+    background-color: black;
+    margin:0px;
+    
+}
+
+.status-approved {
+    background-color: #81C784;
+    margin:0px;
+    
+}
+
+.status-completed {    
+    background-color: #64B5F6;
+    margin:0px;
+}
+
+.column-font-styles {
+    font-weight:500;
+}
+
+.dt-header {
+    text-align:start; 
+    background-color: #E3E3E3;
+    font-weight: 100;
+}

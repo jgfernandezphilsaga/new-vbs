@@ -1,0 +1,55 @@
+.status-span {
+    position: absolute; 
+    display: inline-block; 
+    border-radius: 5px; 
+}
+
+.sender {
+    font-style: italic;
+}
+
+.remarks-scrollbar::-webkit-scrollbar {
+    width: 2px;
+    height: 10px;
+}
+
+.remarks-scrollbar::-webkit-scrollbar-track {
+    background-color: #f1f1f1;
+    /* border: 1px solid #7e7e7e; */
+    border-radius: 8px;
+}
+
+.remarks-scrollbar::-webkit-scrollbar-thumb {
+    background-color: #BEBEBE;
+    /* border: 1.5px solid #616161; */
+    border-radius: 8px;
+}
+
+.purpose {
+    display: -webkit-box;
+    line-clamp: 3;
+    -webkit-line-clamp: 3; 
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    overflow-wrap: anywhere;
+    position: relative;
+}
+
+
+.purpose.expanded {
+    line-clamp: unset;  
+    -webkit-line-clamp: unset; 
+    display: block;
+}
+
+.read-more {
+    display: block;
+    cursor: pointer;
+    color: #007bff;  
+    text-decoration: underline;
+    text-align: center;
+    position: relative;
+    bottom: 0;
+    right: 0;
+}

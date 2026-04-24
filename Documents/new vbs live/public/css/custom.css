@@ -1,0 +1,100 @@
+/* ROOT */
+:root {
+    --cus-bg-saved: #F44336;
+    --cus-bg-posted: #FFEB3B;
+    --cus-bg-approved: #66BB6A;
+    --cus-bg-completed: #42A5F5;
+    --cus-bg-saved-rgb: 244, 67, 54;
+    --cus-bg-posted-rgb: 255, 235, 59;
+    --cus-bg-approved-rgb: 102, 187, 106;
+    --cus-bg-completed-rgb: 66, 165, 245;
+}
+.cus-bg-saved {
+    --cus-bg-opacity: 1;
+    background-color: rgba(var(--cus-bg-saved-rgb), var(--cus-bg-opacity)) !important;
+}
+
+.cus-bg-post {
+    --cus-bg-opacity: 1;
+    background-color: rgba(var(--cus-bg-posted-rgb), var(--cus-bg-opacity)) !important;
+}
+
+.cus-bg-approved {
+    --cus-bg-opacity: 1;
+    background-color: rgba(var(--cus-bg-approved-rgb), var(--cus-bg-opacity)) !important;
+}
+
+.cus-bg-completed {
+    --cus-bg-opacity: 1;
+    background-color: rgba(var(--cus-bg-completed-rgb), var(--cus-bg-opacity)) !important;
+}
+
+/* LAYOUT */
+.header-card {
+    box-shadow: rgba(0, 0, 0, 0.075) 0px 1.25px 2.5px 0px;
+    
+    border:solid;
+    border-width: 1px;
+    border-radius: 8px;
+    border-color: rgb(225, 225, 225);
+
+    padding: 5px;
+}
+
+.page-title {
+    padding: 8px 15px;
+
+    font-size: 20px;
+}
+
+.table-custom {
+    border-bottom-color: rgb(221, 221, 221);
+    border-left-color: rgb(221, 221, 221);
+    border-right-color: rgb(221, 221, 221);
+}
+
+/* DASHBOARD */
+.cards-row {
+    padding: 12px 0px;
+}
+
+.filter-status-btn {
+    padding: 5px;
+
+}
+
+.filter-status-btn-label {
+    font-size: 13px;
+}
+
+/* VIEW MODAL */
+.view-details-headers {
+    font-weight: bold; 
+    text-align: center;
+}
+
+.modal-left-title-image {
+   height: 130px; 
+   width: 130px; 
+   border-radius: 50%;  
+   object-fit:contain; 
+   object-position:center; 
+}
+
+.modal-right-title-image{
+    height: 100px; 
+    width: 130px; 
+    object-fit:contain; 
+    object-position:center; 
+}
+
+/* @media print {
+    @page {
+        size: landscape;
+        margin: 1cm;
+    }
+    body {
+        -webkit-print-color-adjust: exact;
+        font-family: Arial, sans-serif;
+    }
+} */

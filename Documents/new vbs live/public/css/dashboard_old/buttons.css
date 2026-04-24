@@ -1,0 +1,117 @@
+.btn-save {
+    /* --bs-btn-color: #fff;
+    --bs-btn-bg: #0d6efd;
+    --bs-btn-border-color: #0d6efd;
+    --bs-btn-hover-color: #fff;
+    --bs-btn-hover-bg: #0b5ed7;
+    --bs-btn-hover-border-color: #0a58ca;
+    --bs-btn-focus-shadow-rgb: 49, 132, 253;
+    --bs-btn-active-color: #fff;
+    --bs-btn-active-bg: #0a58ca;
+    --bs-btn-active-border-color: #0a53be;
+    --bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+    --bs-btn-disabled-color: #fff;
+    --bs-btn-disabled-bg: #0d6efd;
+    --bs-btn-disabled-border-color: #0d6efd; */
+
+    color: #FFF;
+    background-color: #FFEE58;
+    border-color: #FFEE58;
+}
+
+.btn-save:hover {
+    color: #FFF;
+    background-color: #FFEB3B !important;
+    border-color: #FFEB3B !important;
+}
+
+.btn-save:focus {
+    /* border-width:4px; */
+    color: #FFF;
+    background-color: #FFEB3B;
+    /* border-color:   black;#FFF59D;*/ 
+    box-shadow: black; 
+    /* rgba(255, 245, 157, 1); */
+}
+
+.btn-save:active {
+    color: #FFF !important;
+    background-color: #FFEB3B !important;
+    border-color: #FFEB3B !important;
+    box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+}
+
+.btn-post {
+    color: #FFF;
+    background-color: #4DB6AC;
+    border-color: #4DB6AC;
+}
+
+.btn-post:hover {
+    color: #FFF;
+    background-color: #009688 !important;
+    border-color: #009688 !important;
+}
+
+.btn-post:focus {
+    color: #FFF;
+    background-color: #009688;
+    box-shadow: black; 
+}
+
+.btn-post:active {
+    color: #FFF !important;
+    background-color: #009688 !important;
+    border-color: #009688 !important;
+    box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+}
+
+.btn-approve {
+    color: #FFF;
+    background-color: #66BB6A;
+    border-color: #66BB6A;
+}
+
+.btn-approve:hover {
+    color: #FFF;
+    background-color: #4CAF50 !important;
+    border-color: #4CAF50 !important;
+}
+
+.btn-approve:focus {
+    color: #FFF;
+    background-color: #4CAF50;
+    box-shadow: black; 
+}
+
+.btn-approve:active {
+    color: #FFF !important;
+    background-color: #4CAF50 !important;
+    border-color: #4CAF50 !important;
+    box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+}
+
+.btn-hold {
+    color: #FFF;
+    background-color: #FFB74D;
+    border-color: #FFB74D;
+}
+
+.btn-hold:hover {
+    color: #FFF;
+    background-color: #FF9800 !important;
+    border-color: #FF9800 !important;
+}
+
+.btn-hold:focus {
+    color: #FFF;
+    background-color: #FF9800;
+    box-shadow: black; 
+}
+
+.btn-hold:active {
+    color: #FFF !important;
+    background-color: #FF9800 !important;
+    border-color: #FF9800 !important;
+    box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+}

@@ -1,0 +1,163 @@
+.counter-card {
+    cursor: pointer;   
+    position: relative; /* Required for pseudo-elements positioning */
+    color: white;
+    font-weight: bold;
+    overflow: hidden;
+    max-height: 9rem;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 2px 0px;
+    transition: 0.3s ease-in-out;
+}
+
+.counter-card::before {
+    content: ""; /* Required to display pseudo-element */
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.05); /* Subtle overlay */
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+}
+.counter-card:hover {
+    box-shadow: rgba(0, 0, 0, 0.07) 0px 1px 1px, rgba(0, 0, 0, 0.07) 0px 2px 2px, rgba(0, 0, 0, 0.07) 0px 4px 4px, rgba(0, 0, 0, 0.07) 0px 8px 8px, rgba(0, 0, 0, 0.07) 0px 16px 16px;
+}
+.counter-card:hover::before {
+    opacity: 0.5;
+}
+
+.dash-saved-card {
+    background-color: #64B5F6 !important; 
+}
+
+.dash-saved-card:hover {
+    background-color: #42A5F5 !important;
+  }
+
+.dash-posted-card {
+    background-color: #4DB6AC !important;
+}
+
+.dash-posted-card:hover {
+    background-color: #009688 !important; 
+}
+
+.dash-approved-card {
+    background-color: #81C784 !important; 
+}
+
+.dash-approved-card:hover {
+    background-color: #66BB6A !important;  
+}
+
+.dash-completed-card {
+    background-color: #757575 !important; 
+}
+
+
+.dash-completed-card:hover {
+    background-color: #616161 !important; /* #FFC400 */
+}
+
+.dash-hold-card {
+    background-color: #FFB74D !important; /* #FFD740 */
+}
+
+.dash-hold-card:hover {
+    background-color: #FF9800 !important; /* #FFC400 */
+}
+
+.dash-in-progress-card {    
+    background-color: #00bfff;
+}
+.dash-in-progress-card:hover {    
+    background-color: #00bfff;
+}
+
+.dash-partially-approved-card {    
+    background-color: #00ff00;
+}
+
+.dash-partially-approved-card:hover {    
+    background-color: #00ff00;
+}
+
+.dash-fully-approved-card {    
+    background-color: #42b883;
+}
+
+.dash-fully-approved-card:hover {    
+    background-color: #42b883;
+}
+
+.dash-approved-open-card {    
+    background-color: #e46161;
+}
+
+.dash-approved-open-card:hover {    
+    background-color: #e46161;
+}
+
+.dash-approved-closed-card:hover {    
+    background-color: #c24d2c; 
+}
+
+
+.dash-disapproved-card {    
+    background-color: #233142;
+}
+
+.dash-disapproved-card:hover {    
+    background-color: #233142;
+}
+
+.dash-pending-card:hover {    
+    background-color: #ff6f3c;
+}
+
+.dash-draft-card {    
+    background-color: #33b9ff;
+}
+
+.dash-draft-card:hover {    
+    background-color: #33b9ff;
+}
+
+.dash-disapproved {    
+    background-color: #EF5350;
+}
+
+.dash-disapproved-card {
+    position: relative; /* Required for pseudo-elements positioning */
+    background-color: #EF5350 !important; /* #FFD740 */
+    color: white;
+    font-weight: bold;
+    overflow: hidden;
+    max-height: 9rem;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 2px 0px;
+    transition: 0.3s ease-in-out;
+}
+
+.dash-disapproved-card::before {
+    content: ""; /* Required to display pseudo-element */
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.05); /* Subtle overlay */
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+}
+
+.dash-disapproved-card:hover {
+    background-color: #F44336 !important; /* #FFC400 */
+    box-shadow: rgba(0, 0, 0, 0.07) 0px 1px 1px, rgba(0, 0, 0, 0.07) 0px 2px 2px, rgba(0, 0, 0, 0.07) 0px 4px 4px, rgba(0, 0, 0, 0.07) 0px 8px 8px, rgba(0, 0, 0, 0.07) 0px 16px 16px;
+}
+
+.dash-disapproved-card:hover::before {
+    opacity: 0.5;
+}
+
+

@@ -1,0 +1,40 @@
+# version: '3.8'
+
+services:
+  app:
+    build: .
+    container_name: vbs-app
+    image: vbs-app:init
+    ports:
+      - "8084:80" # Exposing port 8080 to host for Apache access
+    volumes:
+      - .:/var/www/html
+    # environment:
+    #   - DB_CONNECTION=sqlsrv
+    #   - DB_HOST=172.16.20.28
+    #   - DB_PORT=1433
+    #   - DB_DATABASE=vbs_db
+    #   - DB_USERNAME=sa
+    #   - DB_PASSWORD=philsaga
+    env_file:
+      - .env
+    networks:
+      - laravel_net
+    # depends_on:
+    #   - mssql
+
+  # mssql:
+  #   image: mcr.microsoft.com/mssql/server:2022-latest
+  #   container_name: mssql
+  #   environment:
+  #     - ACCEPT_EULA=Y
+  #     - SA_PASSWORD=yourStrongPassword123
+  #     - MSSQL_PID=Express
+  #   ports:
+  #     - "1434:1433"
+  #   networks:
+  #     - laravel_net
+
+networks:
+  laravel_net:
+    driver: bridge

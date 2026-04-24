@@ -1,0 +1,132 @@
+<nav class="navbar" style="padding: 0px">
+    <div class="navbar-items" style="width: 80%; margin: 0 auto;">
+        <div>
+            <a href="{{ route('dashboard') }}" style="color: inherit; text-decoration:none; display: flex; flex-direction: row" >
+                <img src="{{ asset('assets/images/logo/pmc-logo.png') }}" style="height: 100%; width: 10%; margin: 8px 0px" alt>
+                <h1 class="navbar-title">
+                    VEHICLE BOOKING SYSTEM
+                </h1>
+            </a>
+        </div>
+        <ul class="links" style="display:flex; flex-direction:row; margin: 0;">
+            <li class="">
+                <a href="{{ route('dashboard') }}" class="nav-link">
+                    <p>Home</p>
+                </a>
+            </li>
+            @if(session('user_role') === 'dept_secretary')
+                <!-- <li class="" style="cursor: pointer">
+                    <a href="{{ route('create.request') }}" class="nav-link">
+                        <div style="cursor: pointer; font-weight: 500">
+                            Create Request
+                        </div>
+                    </a>
+                </li> -->
+            @endif
+            @if(session('user_role') === 'gsd_dispatcher' )
+                <li id="user-link" class="dropdown d-flex flex-column justify-content-center" style="cursor: pointer; min-width: 5vw;">
+                <div class="submenu">
+                    <!-- <li><a href="#">Profile</a></li> -->
+                    <div class="" style="font-weight: 500"><a href="{{ route('logout') }}" style="padding-bottom: 5px">Logout</a></div>
+                </div>
+                
+            </li>
+            @endif
+            <li id="user-link" class="dropdown d-flex flex-column justify-content-center" style="cursor: pointer; min-width: 5vw;">
+                <div class="user-name" style="cursor: pointer; font-weight: 500; letter-spacing: 0px"><i class="fa-solid fa-user"></i> &nbsp; {{ session('user_full_name') }}</div>
+                <div class="submenu">
+                    <!-- <li><a href="#">Profile</a></li> -->
+                    @if(session('user_role') !== 'dept_secretary' && session('user_role') !== 'gsd_dispatcher' && session('user_role') === 'gsd_manager')
+                        <div class="" style="font-weight: 500"><a href="{{ route('user.create') }}" >Create User</a></div>
+                    @endif
+                    <div class="" style="font-weight: 500"><a href="{{ route('logout') }}" style="padding-bottom: 5px">Logout</a></div>
+                </div>
+                
+            </li>
+        </ul>
+    </div>
+</nav>
+
+<style>
+    .links li {
+        padding: 0px;
+    }
+
+    .nav-link {
+        display: flex; /* Make the <a> tag a block-level element */
+        height: 100%; /* Optional: Make it span the full height of its parent <li> */
+        text-decoration: none; /* Optional: Remove underline */
+        color: inherit; /* Optional: Inherit text color */
+        align-items:center;
+
+        font-weight: 500;
+        cursor: pointer;
+    }
+
+    .nav-link:hover {
+        color: #42A5F5;
+
+        -webkit-transition: all 0.2s ease-out;
+        -moz-transition: all 0.2s ease-out;
+        -o-transition: all 0.2s ease-out;
+        transition: all 0.2s ease-out;
+    }
+    
+    .submenu {
+        /* display: none; */
+        display: block;
+        position: absolute; 
+        top: 120%; 
+        left: 0; 
+        width:100%; 
+        background-color: #fff; 
+        visibility: hidden;
+
+        /* list-style: none; */
+        padding: 0px;
+        margin: 0;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        z-index: 1000;
+
+        opacity: 0.1;
+    }
+
+    .submenu div a {
+        display: block;
+        padding: 0px 26px;
+        color: #333;
+        text-decoration: none;
+    }
+
+    .submenu div a:hover {
+        background-color: #f0f0f0;
+        color: #42A5F5;
+        
+        -webkit-transition: all 0.2s ease-out;
+        -moz-transition: all 0.2s ease-out;
+        -o-transition: all 0.2s ease-out;
+        transition: all 0.2s ease-out;
+    }
+
+    #user-link:hover .submenu{
+        top: 100%;
+        opacity: 1;
+        visibility: visible;
+
+        -webkit-transition: all 0.2s ease-out;
+        -moz-transition: all 0.2s ease-out;
+        -o-transition: all 0.2s ease-out;
+        transition: all 0.2s ease-out;
+    }
+
+    /* ul {
+        list-style-type: none; 
+        padding: 0; 
+        margin: 0; 
+    }
+
+    li {
+        position: relative;
+        padding: 0 5px;
+    } */
+</style>
